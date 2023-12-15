@@ -1,0 +1,32 @@
+DELIMITER //
+
+CREATE PROCEDURE proc(sec INT)
+
+BEGIN
+
+DECLARE result VARCHAR(100);
+DECLARE days INT;
+DECLARE hours INT;
+DECLARE minutes INT;
+DECLARE seconds INT;
+
+SET days = sec / 86400;
+SET sec = sec % 86400;
+
+SET hours = sec / 3600;
+SET sec = sec % 3600;
+
+SET minutes = sec / 60;
+SET seconds = sec % 60;
+
+SET result = CONCAT(
+        days,' days ', hours, ' hours ', minutes, ' minutes ', seconds, ' seconds.'
+    );
+
+SELECT result;
+
+END// 
+
+DELIMITER ;
+
+CALL proc(47685798);
